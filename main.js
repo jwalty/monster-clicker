@@ -1,3 +1,6 @@
+var dragonHealth = 1000;
+var enemyAlive = true;
+
 function createInput(event){
   var newthing = document.createElement("p");
   var enemy = document.getElementById("enemy");
@@ -5,6 +8,12 @@ function createInput(event){
   var enemyHeight = enemy.offsetHeight;
   newthing.setAttribute('id','damageHitsplat');
   let hit = Math.floor(Math.random() * 5) + 1;
+  dragonHealth -= hit;
+  document.getElementById("dragonHealth").innerHTML = dragonHealth;
+  if (dragonHealth <= 0) {
+    enemyAlive = false;
+    enemy.remove();
+  }
   newthing.innerHTML = "-" + hit;
   document.body.appendChild(newthing); // Your existing code
 
@@ -27,7 +36,9 @@ function createInput(event){
 }
 
 window.setInterval(function(){
-	
-	createInput(event);
+	if (enemyAlive = true) {
+    createInput(event);
+  }
+
 	
 }, 1000);
