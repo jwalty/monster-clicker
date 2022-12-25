@@ -25,3 +25,5 @@ function createInput(event){
   setTimeout(() => {    newthing.setAttribute('class','addedClass'); }, 0);
   setTimeout(() => {    newthing.remove(); }, 2000);  
 }
+
+setInterval(createInput(event), 1000); 
