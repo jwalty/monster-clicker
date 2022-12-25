@@ -26,4 +26,8 @@ function createInput(event){
   setTimeout(() => {    newthing.remove(); }, 2000);  
 }
 
-setInterval(createInput(event), 1000); 
+window.setInterval(function(){
+	
+	createInput(event);
+	
+}, 1000);
