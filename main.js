@@ -1,26 +1,23 @@
-var dragonHealth = 1000;
+var enemyHealth = 1000;
 var enemyAlive = true;
 
-function createInput(event){
+//Attacking
+function attack(){
   var newthing = document.createElement("p");
   var enemy = document.getElementById("enemy");
   var enemyWidth = enemy.offsetWidth;
   var enemyHeight = enemy.offsetHeight;
   newthing.setAttribute('id','damageHitsplat');
   let hit = Math.floor(Math.random() * 5) + 1;
-  dragonHealth -= hit;
-  document.getElementById("dragonHealth").innerHTML = dragonHealth;
-  if (dragonHealth <= 0) {
+  enemyHealth -= hit;
+  document.getElementById("enemyHealth").innerHTML = enemyHealth;
+  if (enemyHealth <= 0) {
+    enemyHealth = 0;
     enemyAlive = false;
     enemy.remove();
   }
   newthing.innerHTML = "-" + hit;
-  document.body.appendChild(newthing); // Your existing code
-
-
-//   // get the coordinates of the mouse
-//   var x = event.clientX;     // get the horizontal coordinate
-//   var y = event.clientY;   // get the vertical coordinate
+  document.body.appendChild(newthing);
 
     var x = enemyWidth * Math.random();
     var y = enemyHeight * Math.random();
@@ -29,16 +26,14 @@ function createInput(event){
   newthing.style.position = "absolute"; // fixes el relative to page. Could use absolute.
   newthing.style.left = x + "px";
   newthing.style.top = y + "px";
-  enemy.setAttribute('class','attacked');
-  setTimeout(() => {    enemy.removeAttribute('class'); }, 500);
   setTimeout(() => {    newthing.setAttribute('class','addedClass'); }, 0);
   setTimeout(() => {    newthing.remove(); }, 2000);  
 }
 
+
+//debug auto-hitter, will be replaced with chat commmands
 window.setInterval(function(){
 	if (enemyAlive = true) {
-    createInput(event);
+    attack();
   }
-
-	
-}, 1000);
+}, 10);
